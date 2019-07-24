@@ -7,16 +7,17 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!--  <link rel="shortcut icon" href="imagenes/favicon-printing-lab.png" type="image/x-icon"/> -->
-
   <title>@yield('title', '')</title>
-
   <!-- Styles -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-
   <link href="{{ asset('css/css_app.css') }}" rel="stylesheet">
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!--Alertas-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+  <!---->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body >
 
@@ -31,13 +32,13 @@
           <a href="#menuProducts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-archive"></i> Productos</a>
           <ul class="collapse list-unstyled" id="menuProducts">
             <li>
-              <a href="#">Producto</a>
+              <a href="producto">Producto</a>
             </li>
             <li>
-              <a href="#">Categoría</a>
+              <a href="categoria">Categoría</a>
             </li>
             <li>
-              <a href="#">Marca</a>
+              <a href="marca">Marca</a>
             </li>
           </ul>
         </li>
@@ -46,10 +47,10 @@
           <a href="#menuInventario" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-suitcase"></i> Inventario</a>
           <ul class="collapse list-unstyled" id="menuInventario">
             <li>
-              <a href="#">Inventario</a>
+              <a href="inventario">Inventario</a>
             </li>
             <li>
-              <a href="#">Movimientos Inventario</a>
+              <a href="movimientos_inventario">Movimientos Inventario</a>
             </li>
           </ul>
         </li>
@@ -61,10 +62,10 @@
               <a href="empresa">Empresa</a>
             </li>
             <li>
-              <a href="#">Tiendas</a>
+              <a href="tiendas">Tiendas</a>
             </li>
             <li>
-              <a href="#">Ubicación</a>
+              <a href="ubicacion">Ubicación</a>
             </li>
           </ul>
         </li>
@@ -106,21 +107,18 @@
 
       @yield('content')
   </div>
-
-
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
+  <!--Alertas-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+  <!---->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!-- Bootstrap JS -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <!-- jQuery Custom Scroller CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
   <script src="{{ asset('js/js_app.js') }}">
-
   </script>
-
+  @yield('scripts')
 </body>
 </html>
