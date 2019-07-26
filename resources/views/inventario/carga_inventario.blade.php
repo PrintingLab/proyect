@@ -26,6 +26,7 @@
         <div class="input-group">
           <input id="search" name="search" type="text" class="form-control" placeholder="Search" />
         </div>
+
       </div>
     </div>
 
@@ -66,26 +67,41 @@ $(document).ready(function() {
           term : request.term
         },
         dataType: "json",
-
         success: function(data){
 
-          var array = $.map(data, function (item) {
-                     return {
-                        value:item.Producto_nombre,
-                        id:item.Producto_ID
-                     }
-                 });
-                  response(array)
+console.log(data);
+
+          response($.map(data, function(item,idx){
+
+          return $("<option/>")
+
+            .va;(item.Producto_ID)
+            .text(item.Producto_nombre);
 
 
+        }))
 
-        }
-      });
-    },
+      }
 
-    //minLength: 1
 
-  });
+    });
+  },
+
+
+  /*
+  select: function(event, ui){
+  console.log(ui.item.value);
+  $(this).val(ui.item.value)
+  $('#search').val(ui.item.id);
+},
+*/
+minLength: 1
+//autoFocus: true,
+
+
+//minLength: 1
+
+});
 });
 </script>
 @endsection
