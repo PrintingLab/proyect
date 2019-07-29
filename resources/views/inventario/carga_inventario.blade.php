@@ -26,7 +26,6 @@
         <div class="input-group">
           <input id="search" name="search" type="text" class="form-control" placeholder="Search" />
         </div>
-
       </div>
     </div>
 
@@ -58,50 +57,57 @@ response( data );
 */
 
 $(document).ready(function() {
-  $( "#search" ).autocomplete({
 
-    source: function(request, response) {
+
+  $( "#search" ).keyup(function(){
+
+    var query =$("#search").val();
+    console.log(query);
+
+    if (query.length >2) {
       $.ajax({
         url: "{{url('auto_consulta_product')}}",
         data: {
-          term : request.term
+          term : query
         },
         dataType: "json",
         success: function(data){
 
-console.log(data);
+          console.log(data);
 
-          response($.map(data, function(item,idx){
+        }
 
-          return $("<option/>")
+      })
 
-            .va;(item.Producto_ID)
-            .text(item.Producto_nombre);
+    }
 
+  });
 
-        }))
-
-      }
-
-
-    });
-  },
 
 
   /*
-  select: function(event, ui){
-  console.log(ui.item.value);
-  $(this).val(ui.item.value)
-  $('#search').val(ui.item.id);
+  $( "#search" ).autocomplete({
+  source: function(request, response) {
+  $.ajax({
+  url: "{{url('auto_consulta_product')}}",
+  data: {
+  term : request.term
 },
-*/
-minLength: 1
-//autoFocus: true,
-
-
-//minLength: 1
-
+dataType: "json",
+success: function(data){
+console.log(data);
+var values = $.map(data, function(item) {
+return {
+value: item.Producto_nombre,id: item.Producto_ID};
 });
+response(values);
+}
+});
+},
+minLength: 1
+});
+*/
+
 });
 </script>
 @endsection
