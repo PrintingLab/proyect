@@ -75,7 +75,8 @@ $(document).ready(function() {
 
           console.log(data);
 
-        }
+        },
+        dataType:'text'
 
       })
 
