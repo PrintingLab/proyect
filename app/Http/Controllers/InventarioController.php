@@ -7,30 +7,38 @@ use Illuminate\Support\Facades\DB;
 class InventarioController extends Controller
 {
 
-public function InventarioIndex(){
-  return view('inventario/inventario');
-}
-//movimiento de inventario
-public function ViewMove(){
-  return view('inventario/move_inventario');
-}
+  public function InventarioIndex(){
+    return view('inventario/inventario');
+  }
+  //movimiento de inventario
+  public function ViewMove(){
+    return view('inventario/move_inventario');
+  }
 
-//Carga de Inventario
-public function ViewCargaInventario(){
-  $consulta_T=DB::table('tiendas')->select('Tiendas_ID','Tiendas_Nombre')->get();
-  return view('inventario/carga_inventario',['consultaT'=>$consulta_T]);
-}
+  //Carga de Inventario
+  public function ViewCargaInventario(){
+    $consulta_T=DB::table('tiendas')->select('Tiendas_ID','Tiendas_Nombre')->get();
+    return view('inventario/carga_inventario',['consultaT'=>$consulta_T]);
+  }
 
-public function AutoCompleteProduct(Request $request){
+  public function AutoCompleteProduct(Request $request){
+    $search =$request->get('term');
+    $result=DB::table('producto')->select('Producto_ID','Producto_nombre')
+    ->where('Producto_nombre','LIKE','%'.$search.'%')
+    ->get();
 
-$search =$request->get('term');
-$result=DB::table('producto')->select('Producto_ID','Producto_nombre')
-->where('Producto_nombre','LIKE','%'.$search.'%')
-->get();
+    if ( count($result) >0) {
 
-  return  response()->json($result) ;
+      foreach ($result as $row) {
+        $response ="<option id='".$row->Producto_ID."'>".$row->Producto_nombre."</option>";
+      }
 
-}
+    }else{
+      $response= "<option> No data found </option>";
+    }
+
+      return  response($response) ;
+  }
 
 
 }

@@ -1,6 +1,14 @@
 @extends('layouts/app')
 @section('title', 'Inventario')
 @section('content')
+<style media="screen">
+{
+  float: left;
+  list-style: none;
+  border: 1px solid black;
+  margin-top: 6px;
+}
+</style>
 <div class="container">
   <div class="col-md-12">
     <h1>Carga de Inventario</h1>
@@ -19,17 +27,28 @@
     </div>
 
     <div class="form-group col-md-4">
-      <label>Costo</label>
+      <label>Producto</label>
       <!--    <input type="text" class="form-control" name="producto" id="IdP" >-->
 
-      <div id="custom-search-input">
-        <div class="input-group">
-          <input id="search" name="search" type="text" class="form-control" placeholder="Search" />
-        </div>
+  <!--
+      <input id="search" name="search" type="text" class="form-control" placeholder="Search" />
+      <div id="response">
       </div>
+    -->
+
+<input id="search" name="search" type="text" class="form-control" placeholder="Search" />
+<select id="response">
+
+</select>
+
+
     </div>
 
+
+
   </div>
+
+</div>
 
 </div>
 @endsection
@@ -62,7 +81,7 @@ $(document).ready(function() {
   $( "#search" ).keyup(function(){
 
     var query =$("#search").val();
-    console.log(query);
+    //console.log(query);
 
     if (query.length >2) {
       $.ajax({
@@ -75,15 +94,16 @@ $(document).ready(function() {
 
           console.log(data);
 
+          $("#response").html(data);
+
         },
         dataType:'text'
 
       })
-
+      minLength: 1
     }
 
   });
-
 
 
   /*
