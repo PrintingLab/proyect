@@ -43,4 +43,12 @@ Route::get('inventario','InventarioController@InventarioIndex');
 Route::get('move_inventario','InventarioController@ViewMove');
 Route::get('carga_inventario','InventarioController@ViewCargaInventario');
 
-Route::get('auto_consulta_product','InventarioController@AutoCompleteProduct');
+Route::post('auto_consulta_product','InventarioController@AutoCompleteProduct')->name('auto_consulta_product');
+
+/*confi*/
+Route::get('configuracion_movimientos','InventarioController@ConfigMovimientos');
+
+Route::post('create_configuracion_movimientos','InventarioController@CrearConfigMovimientos')->name('create_configuracion_movimientos');
+Route::get('eliminar-configuracion_movimientos','InventarioController@EliminarConfigMovimientos');
+Route::get('consulta_configuracion_movimientos/{id}','InventarioController@ConsultaConfigMovimientos');
+Route::post('update_configuracion_movimientos','InventarioController@UpdateConfigMovimientos')->name('update_configuracion_movimientos');

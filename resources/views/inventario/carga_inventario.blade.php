@@ -2,21 +2,58 @@
 @section('title', 'Inventario')
 @section('content')
 <style media="screen">
-{
-  float: left;
-  list-style: none;
-  border: 1px solid black;
-  margin-top: 6px;
+
+#searchResult{
+  padding: 0px;
+  z-index: 1;
+  position: absolute;
+  width: 97%;
+}
+
+#searchResult option{
+
+  font-weight: normal;
+  display: block;
+  white-space: pre;
+  min-height: 1.2em;
+  padding: 0px 2px 1px;
+
+
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#searchResult option:not([size]):not([multiple]) {
+  height: calc(2.25rem + 2px);
+}
+
+
+#searchResult option:hover{
+  color: white;
+  background-color: #3490f3;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  outline: -webkit-focus-ring-color auto 1px;
 }
 </style>
-<div class="container">
+<div class="container" ng-controller="InventariControler_Angular" >
   <div class="col-md-12">
     <h1>Carga de Inventario</h1>
   </div>
 
   <div class="form-row">
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-2">
       <label>Categoría</label>
       <select class="form-control" name="Tienda" required>
         <option value="" disabled selected>Tienda</option>
@@ -26,109 +63,70 @@
       </select>
     </div>
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
       <label>Producto</label>
-      <!--    <input type="text" class="form-control" name="producto" id="IdP" >-->
-
-  <!--
-      <input id="search" name="search" type="text" class="form-control" placeholder="Search" />
-      <div id="response">
-      </div>
-    -->
-
-<input id="search" name="search" type="text" class="form-control" placeholder="Search" />
-<select id="response">
-
-</select>
-
-
+      <div class="form-group">
+        <input type='text' class="form-control" ng-keyup='fetchUsers()' ng-model='searchText' placeholder='Enter text'>
+        <ul id='searchResult'  class="option_search" >
+          <option ng-click='setValue($index)'
+          ng-repeat="result in searchResult" value=" @{{ result.Producto_unidades }} @{{ result.	Producto_ID }} ">
+          @{{ result.Producto_nombre }}
+        </option>
+      </ul>
     </div>
-
-
-
   </div>
 
+  <div class="form-group col-md-2">
+    <label></label>
+    <label id""></label>
+  </div>
+
+
 </div>
+
+
+<div class="col-md-12" >
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <th scope="row">1</th>
+        <td>@{{prueba}}</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+
 
 </div>
 @endsection
 @section('scripts')
-<script>
-/*
-$('#IdP').autocomplete({
-source: function( request, response ) {
-$.ajax({
-url: "auto_consulta_product",
-dataType: "jsonp",
-data: {
-q: request.term
-},
-success: function(data) {
-console.log(data);
-response( data );
-
-}
-});
-},
-
-});
-
-*/
-
-$(document).ready(function() {
-
-
-  $( "#search" ).keyup(function(){
-
-    var query =$("#search").val();
-    //console.log(query);
-
-    if (query.length >2) {
-      $.ajax({
-        url: "{{url('auto_consulta_product')}}",
-        data: {
-          term : query
-        },
-        dataType: "json",
-        success: function(data){
-
-          console.log(data);
-
-          $("#response").html(data);
-
-        },
-        dataType:'text'
-
-      })
-      minLength: 1
-    }
-
-  });
-
-
-  /*
-  $( "#search" ).autocomplete({
-  source: function(request, response) {
-  $.ajax({
-  url: "{{url('auto_consulta_product')}}",
-  data: {
-  term : request.term
-},
-dataType: "json",
-success: function(data){
-console.log(data);
-var values = $.map(data, function(item) {
-return {
-value: item.Producto_nombre,id: item.Producto_ID};
-});
-response(values);
-}
-});
-},
-minLength: 1
-});
-*/
-
-});
-</script>
+<script src="{{ asset('js/angular_inventario.js') }}"></script>
 @endsection

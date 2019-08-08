@@ -18,8 +18,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
   <!---->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
 </head>
-<body >
+<body ng-app="proyect-v1">
 
   <div class="wrapper">
     <!-- Sidebar  -->
@@ -51,6 +52,9 @@
             </li>
             <li>
               <a href="movimientos_inventario">Movimientos Inventario</a>
+            </li>
+            <li>
+              <a href="configuracion_movimientos">Configuración de Movimientos</a>
             </li>
           </ul>
         </li>
@@ -119,6 +123,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
   <script src="{{ asset('js/js_app.js') }}">
   </script>
+  <script src="{{ asset('js/angular_app.js') }}">
+  </script>
+
   @yield('scripts')
 </body>
 </html>
