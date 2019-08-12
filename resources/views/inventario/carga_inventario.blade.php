@@ -18,7 +18,6 @@
   min-height: 1.2em;
   padding: 0px 2px 1px;
 
-
   display: block;
   width: 100%;
   padding: .375rem .75rem;
@@ -45,6 +44,9 @@
   box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
   outline: -webkit-focus-ring-color auto 1px;
 }
+.btn_i{
+  padding-top: 2.9%;
+}
 </style>
 <div class="container" ng-controller="InventariControler_Angular" >
   <div class="col-md-12">
@@ -54,7 +56,7 @@
   <div class="form-row">
 
     <div class="form-group col-md-2">
-      <label>Categoría</label>
+      <label>Tienda</label>
       <select class="form-control" name="Tienda" required>
         <option value="" disabled selected>Tienda</option>
         @foreach ($consultaT as $array)
@@ -68,60 +70,55 @@
       <div class="form-group">
         <input type='text' class="form-control" ng-keyup='fetchUsers()' ng-model='searchText' placeholder='Enter text'>
         <ul id='searchResult'  class="option_search" >
-          <option ng-click='setValue($index)'
-          ng-repeat="result in searchResult" value=" @{{ result.Producto_unidades }} @{{ result.	Producto_ID }} ">
-          @{{ result.Producto_nombre }}
-        </option>
-      </ul>
+          <option ng-click='setValue($index,$event)'ng-repeat="result in searchResult" value=" @{{result.Producto_unidades}} @{{result.Producto_ID}}">
+            @{{ result.Producto_nombre }}
+          </option>
+        </ul>
+      </div>
     </div>
+
+    <div class="form-group col-md-2">
+      <label>Cantidad</label>
+      <input class="form-control" id='cantidad' ng-model="cantidadInput" type="number" ></input>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label>Medida</label>
+      <input class="form-control" id='Medidas_unique' ng-model="Medidas_unique"  disabled></input>
+    </div>
+
+    <div class="form-group col-md-2 btn_i" >
+      <button type="button" class="btn btn-primary" ng-click="AddTableCI()"><i class="fas fa-plus"></i></button>
+    </div>
+
   </div>
 
-  <div class="form-group col-md-2">
-    <label></label>
-    <label id""></label>
+
+  <div class="col-md-12" >
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Medida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="data in ArrayTableCargaInventario">
+          <td>@{{$index +1}}</td>
+          <td>@{{data.nombre}}</td>
+          <td>@{{data.cantidad}}</td>
+          <td>@{{data.medida}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="form-group col-md-2 btn_i" >
+      <button type="button" class="btn btn-primary" ng-click="FormCargaInventario()"><i class="fas fa-check"></i> Realizar Movimiento</button>
+    </div>
+
   </div>
-
-
-</div>
-
-
-<div class="col-md-12" >
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      <tr>
-        <th scope="row">1</th>
-        <td>@{{prueba}}</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-
-    </tbody>
-  </table>
-
-</div>
 
 
 

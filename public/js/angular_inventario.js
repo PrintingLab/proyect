@@ -18,15 +18,20 @@ Appadmin.controller('InventariControler_Angular',function($scope,$http){
   }
 
   $scope.setValue = function(index,$event){
-
     $scope.searchText = $scope.searchResult[index].Producto_nombre;
-
-    $scope.searchText2 = $scope.searchResult[index].Producto_unidades;
-
-    console.log($scope.searchText2);
-
+    $scope.Medidas_unique =$scope.searchResult[index].Producto_unidades;
     $scope.searchResult = {};
-
   }
+
+  //variables table
+  $scope.ArrayTableCargaInventario=[];
+  $scope.AddTableCI= function(){
+    $scope.ArrayTableCargaInventario.push({nombre:$scope.searchText,cantidad:$scope.cantidadInput,medida:$scope.Medidas_unique})
+  }
+
+$scope.FormCargaInventario= function(){
+
+}
+
 
 })
