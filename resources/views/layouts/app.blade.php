@@ -29,14 +29,16 @@
         <h3>User</h3>
       </div>
       <ul class="list-unstyled components">
+
         <li class="active">
-          <a href="#menuProducts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-sign"></i> Proyectos</a>
-          <ul class="collapse list-unstyled" id="menuProducts">
+          <a href="#menuProyectos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-sign"></i> Proyectos</a>
+          <ul class="collapse list-unstyled" id="menuProyectos">
             <li>
               <a href="crear_proyectos">Crear</a>
             </li>
           </ul>
         </li>
+
         <li class="">
           <a href="#menuProducts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-archive"></i> Productos</a>
           <ul class="collapse list-unstyled" id="menuProducts">
