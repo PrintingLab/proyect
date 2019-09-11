@@ -4,7 +4,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+
 Route::get('/','LoginController@Login');
+
 Route::get('Dashboard','DashboardController@Dashboard');
 //empresa
 Route::get('/empresa','EmpresaController@EmpresaIndex');
@@ -45,6 +47,11 @@ Route::get('carga_inventario','InventarioController@ViewCargaInventario');
 
 Route::post('auto_consulta_product','InventarioController@AutoCompleteProduct')->name('auto_consulta_product');
 
+
+//proyectos
+Route::get('/crear_proyectos','ProyectosController@IndexCrear');
+Route::get('/{producto}','ProyectosController@Signs')->name('sign');
+
 /*confi*/
 Route::get('configuracion_movimientos','InventarioController@ConfigMovimientos');
 
@@ -52,3 +59,15 @@ Route::post('create_configuracion_movimientos','InventarioController@CrearConfig
 Route::get('eliminar-configuracion_movimientos','InventarioController@EliminarConfigMovimientos');
 Route::get('consulta_configuracion_movimientos/{id}','InventarioController@ConsultaConfigMovimientos');
 Route::post('update_configuracion_movimientos','InventarioController@UpdateConfigMovimientos')->name('update_configuracion_movimientos');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

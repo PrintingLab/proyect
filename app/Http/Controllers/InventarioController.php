@@ -19,7 +19,8 @@ class InventarioController extends Controller
   //Carga de Inventario
   public function ViewCargaInventario(){
     $consulta_T=DB::table('tiendas')->select('Tiendas_ID','Tiendas_Nombre')->get();
-    return view('inventario/carga_inventario',['consultaT'=>$consulta_T]);
+    $consulta_M=DB::table('movimientos_inventario')->select('MovimientosInventario_ID','MovimientosInventario_nombre','MovimientosInventario_tipo')->get();
+    return view('inventario/carga_inventario',['consultaT'=>$consulta_T,'consultaM'=>$consulta_M]);
   }
 
 
@@ -28,9 +29,9 @@ class InventarioController extends Controller
 
     $result=DB::select('call AutoCompleteProducto("'.$search.'")');
 
-  //  $result= json_encode($result);
+    //$result= json_encode($result);
 
-  return  response( $result );
+    return  response( $result );
 
     /*
     if ( count($result) >0) {
@@ -43,7 +44,7 @@ class InventarioController extends Controller
       $response .= "<option value='0' > No data found </option>";
     }
     return  response($response) ;
-*/
+    */
 
   }
 

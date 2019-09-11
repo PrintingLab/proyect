@@ -65,6 +65,16 @@
       </select>
     </div>
 
+    <div class="form-group col-md-2">
+      <label>Movimiento</label>
+      <select class="form-control" name="Movimiento" required>
+        <option value="" disabled selected>Movimiento</option>
+        @foreach ($consultaM as $arrayM)
+        <option value="{{$arrayM->MovimientosInventario_ID}}">{{$arrayM->MovimientosInventario_nombre}}</option>
+        @endforeach
+      </select>
+    </div>
+
     <div class="form-group col-md-3">
       <label>Producto</label>
       <div class="form-group">
@@ -87,6 +97,8 @@
       <input class="form-control" id='Medidas_unique' ng-model="Medidas_unique"  disabled></input>
     </div>
 
+    <input type="text" ng-hide="true" class="form-control"  ng-model="id_producto">
+
     <div class="form-group col-md-2 btn_i" >
       <button type="button" class="btn btn-primary" ng-click="AddTableCI()"><i class="fas fa-plus"></i></button>
     </div>
@@ -102,6 +114,7 @@
           <th scope="col">Producto</th>
           <th scope="col">Cantidad</th>
           <th scope="col">Medida</th>
+
         </tr>
       </thead>
       <tbody>
@@ -110,6 +123,7 @@
           <td>@{{data.nombre}}</td>
           <td>@{{data.cantidad}}</td>
           <td>@{{data.medida}}</td>
+          <td ng-hide="true">@{{data.id}}</td>
         </tr>
       </tbody>
     </table>

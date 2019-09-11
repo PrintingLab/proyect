@@ -10,7 +10,7 @@
   <title>@yield('title', '')</title>
   <!-- Styles -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">
   <link href="{{ asset('css/css_app.css') }}" rel="stylesheet">
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -30,6 +30,14 @@
       </div>
       <ul class="list-unstyled components">
         <li class="active">
+          <a href="#menuProducts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-sign"></i> Proyectos</a>
+          <ul class="collapse list-unstyled" id="menuProducts">
+            <li>
+              <a href="crear_proyectos">Crear</a>
+            </li>
+          </ul>
+        </li>
+        <li class="">
           <a href="#menuProducts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-archive"></i> Productos</a>
           <ul class="collapse list-unstyled" id="menuProducts">
             <li>
@@ -44,7 +52,7 @@
           </ul>
         </li>
 
-        <li class="active">
+        <li class="">
           <a href="#menuInventario" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-suitcase"></i> Inventario</a>
           <ul class="collapse list-unstyled" id="menuInventario">
             <li>
@@ -59,7 +67,7 @@
           </ul>
         </li>
 
-        <li class="active">
+        <li class="">
           <a href="#menuConfig" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cogs"></i> Configuración</a>
           <ul class="collapse list-unstyled" id="menuConfig">
             <li>
@@ -88,7 +96,6 @@
           <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-align-justify"></i>
           </button>
-
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-auto">
               <li class="nav-item active">
