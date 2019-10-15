@@ -11,8 +11,12 @@ class ProyectosController extends Controller
     return view('proyectos/crear_proyectos');
   }
 
-//Sings
+public function ProcesoView(){
+  dd('prueba');
+  return view('proyectos/proceso');
+}
 
+//Sings
 public function Signs(Request $request){
   //dd($request->producto);
   return view('proyectos/signs');

@@ -8,13 +8,20 @@ class InventarioController extends Controller
 {
 
   public function InventarioIndex(){
-    return view('inventario/inventario');
-  }
-  //movimiento de inventario
-  public function ViewMove(){
-    return view('inventario/move_inventario');
+    $consulta=DB::table('inventario')
+    ->join('producto','inventario.Inventario_id_producto','=','producto.Producto_ID')
+    ->join('tiendas','tiendas.Tiendas_ID','=','inventario.Inventario_id_tiendas')
+    ->select('Inventario_ID','Producto_nombre','Producto_referencia','Producto_unidades','Inventario_cantidad','Tiendas_nombre','Inventario_costo')->get();
+    return view('inventario/inventario',['consulta'=>$consulta]);
   }
 
+  //movimiento de ubicacion
+  public function ViewMovimientoUbicacion(){
+    $consulta_T=DB::table('tiendas')->select('Tiendas_ID','Tiendas_Nombre')->get();
+    $consulta_M=DB::table('movimientos_inventario')->select('MovimientosInventario_ID','MovimientosInventario_nombre','MovimientosInventario_tipo')->get();
+    $consulta_U=DB::table('ubicacion')->select('Ubicacion_ID','Ubicacion_nombre')->get();
+    return view('inventario/movimientos_ubicacion',['consultaT'=>$consulta_T,'consultaM'=>$consulta_M,'consultaU'=>$consulta_U]);
+  }
 
   //Carga de Inventario
   public function ViewCargaInventario(){
@@ -23,29 +30,26 @@ class InventarioController extends Controller
     return view('inventario/carga_inventario',['consultaT'=>$consulta_T,'consultaM'=>$consulta_M]);
   }
 
-
   public function AutoCompleteProduct(Request $request){
     $search =$request->searchText;
-
     $result=DB::select('call AutoCompleteProducto("'.$search.'")');
-
-    //$result= json_encode($result);
-
     return  response( $result );
+  }
 
-    /*
-    if ( count($result) >0) {
-      $response ="<option value='' disabled selected>Producto</option>";
-      foreach ($result as $row) {
-        $response .="<option id='".$row->Producto_ID."' data-value='".$row->Producto_unidades."'>".$row->Producto_nombre."</option>";
+  public function CargaInventario(Request $request){
+    $array=$request->productos;
+    $consulta=DB::table('movimientos_inventario')->select('MovimientosInventario_tipo')->where('MovimientosInventario_ID','=',$request->IdMovimiento)->get();
+    $consult=$consulta[0]->MovimientosInventario_tipo;
+    if ($consult=='Entrada') {
+      foreach ($array as $key ) {
+        DB::update('call SumaInventario("'.$key['id'].'","'.$request->IdTienda.'","'.$key['cantidad'].'")');
       }
-    }else{
-      $response= "<option value='' disabled selected> No data found </option>";
-      $response .= "<option value='0' > No data found </option>";
+    }elseif ($consult=='Salida') {
+      foreach ($array as $key ) {
+        DB::update('call RestaInventario("'.$key['id'].'","'.$request->IdTienda.'","'.$key['cantidad'].'")');
+      }
     }
-    return  response($response) ;
-    */
-
+    return;
   }
 
   //Configuracion Movimientos

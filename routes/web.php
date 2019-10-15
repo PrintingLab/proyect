@@ -1,11 +1,10 @@
 <?php
 /*
 Route::get('/', function () {
-    return view('welcome');
+return view('welcome');
 });
 */
 
-Route::get('/','LoginController@Login');
 
 Route::get('Dashboard','DashboardController@Dashboard');
 //empresa
@@ -18,6 +17,7 @@ Route::post('create_tienda','TiendasController@CrearTienda')->name('create_tiend
 Route::get('eliminar-tienda','TiendasController@EliminarTienda');
 Route::get('consulta_tienda/{id}','TiendasController@ConsultaTienda');
 Route::post('update_tienda','TiendasController@UpdateTienda')->name('update_tienda');
+
 //ubicacion
 Route::get('/ubicacion','UbicacionController@UbicacionIndex');
 Route::post('create_ubicacion','UbicacionController@CreateUbicacion')->name('create_ubicacion');
@@ -42,32 +42,35 @@ Route::get('consulta_marca/{id}','ProductoController@ConsultaMarca');
 Route::post('update_marca','ProductoController@UpdateMarca')->name('update_marca');
 //Inventario
 Route::get('inventario','InventarioController@InventarioIndex');
-Route::get('move_inventario','InventarioController@ViewMove');
+Route::get('movimientos_ubicacion','InventarioController@ViewMovimientoUbicacion');
 Route::get('carga_inventario','InventarioController@ViewCargaInventario');
-
 Route::post('auto_consulta_product','InventarioController@AutoCompleteProduct')->name('auto_consulta_product');
-
+Route::post('CargaInventario','InventarioController@CargaInventario');
 
 //proyectos
 Route::get('/crear_proyectos','ProyectosController@IndexCrear');
 Route::get('/{producto}','ProyectosController@Signs')->name('sign');
+Route::get('/proceso','ProyectosController@ProcesoView')->name('proceso2');
 
 /*confi*/
 Route::get('configuracion_movimientos','InventarioController@ConfigMovimientos');
-
 Route::post('create_configuracion_movimientos','InventarioController@CrearConfigMovimientos')->name('create_configuracion_movimientos');
 Route::get('eliminar-configuracion_movimientos','InventarioController@EliminarConfigMovimientos');
 Route::get('consulta_configuracion_movimientos/{id}','InventarioController@ConsultaConfigMovimientos');
 Route::post('update_configuracion_movimientos','InventarioController@UpdateConfigMovimientos')->name('update_configuracion_movimientos');
 
-Auth::routes();
+//Empleados
+Route::get('empleados','EmpleadosController@EmpleadosIndex');
 
-Route::get('/home', 'HomeController@index')->name('home');
+//auth original
+//Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
+//auth personalizado
+Auth::routes(['register' => false]);
 
-Auth::routes();
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('registro', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//Route::post('register', 'Auth\RegisterController@register');

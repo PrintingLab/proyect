@@ -2,16 +2,13 @@
 @section('title', 'Inventario')
 @section('content')
 <style media="screen">
-
 #searchResult{
   padding: 0px;
   z-index: 1;
   position: absolute;
   width: 97%;
 }
-
 #searchResult option{
-
   font-weight: normal;
   display: block;
   white-space: pre;
@@ -30,12 +27,9 @@
   border-radius: .25rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-
 #searchResult option:not([size]):not([multiple]) {
   height: calc(2.25rem + 2px);
 }
-
-
 #searchResult option:hover{
   color: white;
   background-color: #3490f3;
@@ -52,33 +46,29 @@
   <div class="col-md-12">
     <h1>Carga de Inventario</h1>
   </div>
-
   <div class="form-row">
-
     <div class="form-group col-md-2">
       <label>Tienda</label>
-      <select class="form-control" name="Tienda" required>
+      <select class="form-control" name="Tienda" ng-model="tienda">
         <option value="" disabled selected>Tienda</option>
         @foreach ($consultaT as $array)
         <option value="{{$array->Tiendas_ID}}">{{$array->Tiendas_Nombre}}</option>
         @endforeach
       </select>
     </div>
-
     <div class="form-group col-md-2">
       <label>Movimiento</label>
-      <select class="form-control" name="Movimiento" required>
+      <select class="form-control" name="Movimiento" ng-model="movimiento">
         <option value="" disabled selected>Movimiento</option>
         @foreach ($consultaM as $arrayM)
         <option value="{{$arrayM->MovimientosInventario_ID}}">{{$arrayM->MovimientosInventario_nombre}}</option>
         @endforeach
       </select>
     </div>
-
     <div class="form-group col-md-3">
       <label>Producto</label>
       <div class="form-group">
-        <input type='text' class="form-control" ng-keyup='fetchUsers()' ng-model='searchText' placeholder='Enter text'>
+        <input type='text' class="form-control" ng-keyup='fetchUsers()' ng-model='searchText'>
         <ul id='searchResult'  class="option_search" >
           <option ng-click='setValue($index,$event)'ng-repeat="result in searchResult" value=" @{{result.Producto_unidades}} @{{result.Producto_ID}}">
             @{{ result.Producto_nombre }}
@@ -86,26 +76,19 @@
         </ul>
       </div>
     </div>
-
     <div class="form-group col-md-2">
       <label>Cantidad</label>
       <input class="form-control" id='cantidad' ng-model="cantidadInput" type="number" ></input>
     </div>
-
-    <div class="form-group col-md-2">
+    <div class="form-group col-md-1">
       <label>Medida</label>
       <input class="form-control" id='Medidas_unique' ng-model="Medidas_unique"  disabled></input>
     </div>
-
     <input type="text" ng-hide="true" class="form-control"  ng-model="id_producto">
-
     <div class="form-group col-md-2 btn_i" >
       <button type="button" class="btn btn-primary" ng-click="AddTableCI()"><i class="fas fa-plus"></i></button>
     </div>
-
   </div>
-
-
   <div class="col-md-12" >
     <table class="table">
       <thead>
@@ -114,7 +97,6 @@
           <th scope="col">Producto</th>
           <th scope="col">Cantidad</th>
           <th scope="col">Medida</th>
-
         </tr>
       </thead>
       <tbody>
@@ -124,18 +106,16 @@
           <td>@{{data.cantidad}}</td>
           <td>@{{data.medida}}</td>
           <td ng-hide="true">@{{data.id}}</td>
+          <td>
+            <button type="button" name="button" ng-click="deletP(data.id,$index+1)" class="btn btn-primary" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+          </td>
         </tr>
       </tbody>
     </table>
-
     <div class="form-group col-md-2 btn_i" >
       <button type="button" class="btn btn-primary" ng-click="FormCargaInventario()"><i class="fas fa-check"></i> Realizar Movimiento</button>
     </div>
-
   </div>
-
-
-
 </div>
 @endsection
 @section('scripts')

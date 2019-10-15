@@ -7,7 +7,7 @@
     {{csrf_field()}}
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label>Nombre Ubicación</label>
+        <label>Nombre Ubicaciones</label>
         <input type="text" class="form-control" name="name_ubicacion">
       </div>
       <div class="form-group col-md-6" style="padding-top: 2.8%;">

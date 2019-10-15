@@ -36,6 +36,9 @@
             <li>
               <a href="crear_proyectos">Crear</a>
             </li>
+            <li>
+              <a href="{{route('proceso2')}}">Proceso</a>
+            </li>
           </ul>
         </li>
 
@@ -61,7 +64,7 @@
               <a href="inventario">Inventario</a>
             </li>
             <li>
-              <a href="movimientos_inventario">Movimientos Inventario</a>
+              <a href="movimientos_ubicacion">Movimientos Ubicación</a>
             </li>
             <li>
               <a href="configuracion_movimientos">Configuración de Movimientos</a>
@@ -79,7 +82,13 @@
               <a href="tiendas">Tiendas</a>
             </li>
             <li>
-              <a href="ubicacion">Ubicación</a>
+              <a href="{{ route('register') }}">Registro de Cuentas</a>
+            </li>
+            <li>
+              <a href="ubicacion">Ubicaciones</a>
+            </li>
+            <li>
+              <a href="empleados">Empleados</a>
             </li>
           </ul>
         </li>
